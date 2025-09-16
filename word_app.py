@@ -38,8 +38,10 @@ def get_next_word():
     for w, t in list(st.session_state.retry_time.items()):
         if now >= t:
             return w
+    # 一輪完成 → 重設 answered 與 index
     if all(v == True for v in st.session_state.answered.values()):
         st.session_state.answered = {w: None for w in words}
+        st.session_state.index = 0   # 🔑 重置題目索引
         st.session_state.last_result = "🎉 恭喜完成一輪！開始第二輪複習！"
     return words[st.session_state.index]
 
@@ -85,7 +87,8 @@ def submit_answer():
     st.session_state.index = (st.session_state.index + 1) % len(words)
     st.session_state[input_key] = ""
     st.session_state.played = False
-    st.experimental_rerun() if hasattr(st, "experimental_rerun") else st.session_state.update({})
+    st.session_state.last_word = None   # 🔑 加這行
+    st.experimental_rerun()
 
 with st.form(key=f"form_{current_word}", clear_on_submit=False):
     st.text_input("請輸入你聽到的中文字：", key=input_key)
