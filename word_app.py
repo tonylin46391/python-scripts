@@ -24,7 +24,8 @@ if "stats" not in st.session_state:
 if "last_result" not in st.session_state:
     st.session_state.last_result = None  # 儲存最新答題結果訊息
 
-st.title("🎧 聽音辨字練習 App (自動發音 + 正確率統計)")
+st.markdown('<p style="font-size:26px">🎧 聽音辨字練習 App (自動發音 + 正確率統計)</p>', unsafe_allow_html=True)
+
 
 def generate_tts(word):
     tts = gTTS(word, lang="zh-TW")
@@ -85,13 +86,12 @@ def submit_answer():
 
     # 自動跳下一題
     st.session_state.index = (st.session_state.index + 1) % len(words)
-    st.session_state[input_key] = ""
     st.session_state.played = False
     st.session_state.last_word = None   # 🔑 加這行
-    st.experimental_rerun()
+
 
 with st.form(key=f"form_{current_word}", clear_on_submit=False):
-    st.text_input("請輸入你聽到的中文字：", key=input_key)
+    st.text_input("請輸入你聽到的中文字：", key=input_key,autocomplete="off" )  # 🔑 關閉自動完成
     st.form_submit_button("提交答案", on_click=submit_answer)
 
 # 側邊欄進度
