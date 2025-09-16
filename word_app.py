@@ -89,3 +89,5 @@ with st.form(key=f"form_{current_word}", clear_on_submit=True):
 
 # 顯示學習進度
 st.rerun()
+
+
