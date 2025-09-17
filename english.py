@@ -6,7 +6,7 @@ import pandas as pd
 
 # 題庫
 words = [
-    "spectator", "sensation", "invisible", "twinkling", "tropical", "prosperous", "subsequent", "老師", 
+    "spectator", "sensation", "invisible", "twinkling", "tropical", "prosperous", "subsequent",  
     "bustling", "soccer", "chore"
 ]
 
@@ -28,7 +28,7 @@ st.markdown('<p style="font-size:26px">🎧 聽音辨字練習 App (自動發音
 
 
 def generate_tts(word):
-    tts = gTTS(word, lang="zh-TW")
+    tts = gTTS(text=word, lang="en", tld="com")  # 美式英文
     fp = io.BytesIO()
     tts.write_to_fp(fp)
     fp.seek(0)
