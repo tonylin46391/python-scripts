@@ -6,8 +6,7 @@ import pandas as pd
 
 # 題庫
 words = [
-    "spectator", "sensation", "invisible", "twinkling", "tropical", "prosperous", "subsequent",  
-    "bustling", "soccer", "chore"
+    "spectator", "sensation", "invisible", "twinkling", "tropical", "prosperous", "subsequent", "bustling", "soccer", "chore"
 ]
 
 # 初始化 session state
@@ -24,7 +23,7 @@ if "stats" not in st.session_state:
 if "last_result" not in st.session_state:
     st.session_state.last_result = None  # 儲存最新答題結果訊息
 
-st.markdown('<p style="font-size:26px">🎧 聽音辨字練習 App (自動發音 + 正確率統計)</p>', unsafe_allow_html=True)
+st.markdown('<p style="font-size:26px">🎧 聽音辨字練習</p>', unsafe_allow_html=True)
 
 
 def generate_tts(word):
@@ -91,7 +90,7 @@ def submit_answer():
 
 
 with st.form(key=f"form_{current_word}", clear_on_submit=False):
-    st.text_input("請輸入你聽到的中文字：", key=input_key,autocomplete="off" )  # 🔑 關閉自動完成
+    st.text_input("請輸入你聽到的英文字：", key=input_key,autocomplete="off" )  # 🔑 關閉自動完成
     st.form_submit_button("提交答案", on_click=submit_answer)
 
 # 側邊欄進度
