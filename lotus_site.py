@@ -23,7 +23,7 @@ address = st.text_input("請輸入地址 (若選宅配填寫)")
 # 產品展示
 st.header("📷 新鮮蓮藕展示")
 st.image(
-    "C:/Users/hp/AppData/Local/Programs/Python/Python313/Scripts/picture/oosay_01.jpg",
+    "picture/oosay_01.jpg",
     caption="新鮮現採蓮藕",
     use_container_width=True
 )
